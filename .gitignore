@@ -1,0 +1,3 @@
+*.class
+Maven*
+*target/*

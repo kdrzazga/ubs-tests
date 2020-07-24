@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.Optional;
 
 public final class LocatorHelper {
 
@@ -21,13 +20,6 @@ public final class LocatorHelper {
 
     public static WebElement quietlyFindElement(final WebDriver driver, final By locator) {
         return quietlyFindElement(driver, locator, TIMEOUT);
-    }
-
-    public static boolean isElementVisible(final WebDriver driver, final By locator) {
-        WebElement element = quietlyFindElement(driver, locator);
-        return Optional.ofNullable(element)
-                .map(WebElement::isDisplayed)
-                .orElse(false);
     }
 
     public static WebElement quietlyFindElement(WebDriver driver, By locator, int timeout) {
@@ -48,7 +40,6 @@ public final class LocatorHelper {
 
     public static WebElement quietlyFindElementWithinElement(WebDriver driver, By locator, WebElement parent, int timeout) {
         WebElement element;
-        ExpectedCondition<WebElement> elementLocated;
 
         try {
             element = parent.findElement(locator);
@@ -61,11 +52,7 @@ public final class LocatorHelper {
         }
     }
 
-    public static List<WebElement> quietlyFindElements(WebDriver driver, By locator, String locatorArg) {
-        return quietlyFindElements(driver, locator, locatorArg, TIMEOUT);
-    }
-
-    public static List<WebElement> quietlyFindElements(WebDriver driver, By locator, String locatorArg, int timeout) {
+    public static List<WebElement> quietlyFindElements(WebDriver driver, By locator) {
         List<WebElement> elements;
         try {
             elements = driver.findElements(locator);
